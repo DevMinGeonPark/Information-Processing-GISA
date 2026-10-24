@@ -1,0 +1,8 @@
+[
+  { "id": "term", "name": "용어형", "criteria": "설명을 주고 용어·약어를 고르거나 쓰게 함" },
+  { "id": "concept", "name": "개념이해형", "criteria": "특징·장단점·비교·옳고 그름 판단" },
+  { "id": "calculation", "name": "계산형", "criteria": "수치 계산 필요 (페이지 교체 횟수, 해밍 거리, 서브넷 등)" },
+  { "id": "code", "name": "코드해석형", "criteria": "C·Java·Python 코드의 출력·동작 해석" },
+  { "id": "sql", "name": "SQL형", "criteria": "SQL 작성·결과 해석·관계대수" },
+  { "id": "descriptive", "name": "서술형", "criteria": "짧은 서술·약술 답안 (주로 실기)" }
+]

@@ -1,0 +1,105 @@
+[
+  {
+    "id": "2024-2-practical-q1",
+    "round": "2024-2-practical",
+    "number": 1,
+    "subject": "practical-programming",
+    "concepts": [
+      "p-python-collection"
+    ],
+    "type": "code",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2024-2-practical-q2",
+    "round": "2024-2-practical",
+    "number": 2,
+    "subject": "practical-database",
+    "concepts": [
+      "p-normalization"
+    ],
+    "type": "term",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2024-2-practical-q3",
+    "round": "2024-2-practical",
+    "number": 3,
+    "subject": "practical-theory",
+    "concepts": [
+      "p-network-protocol"
+    ],
+    "type": "term",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2024-2-practical-q4",
+    "round": "2024-2-practical",
+    "number": 4,
+    "subject": "practical-programming",
+    "concepts": [
+      "p-c-array-string",
+      "p-c-pointer"
+    ],
+    "type": "code",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2024-2-practical-q5",
+    "round": "2024-2-practical",
+    "number": 5,
+    "subject": "practical-database",
+    "concepts": [
+      "p-sql-join"
+    ],
+    "type": "sql",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2024-2-practical-q6",
+    "round": "2024-2-practical",
+    "number": 6,
+    "subject": "practical-theory",
+    "concepts": [
+      "p-testing"
+    ],
+    "type": "concept",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  }
+]

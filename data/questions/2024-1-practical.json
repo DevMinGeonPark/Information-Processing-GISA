@@ -1,0 +1,104 @@
+[
+  {
+    "id": "2024-1-practical-q1",
+    "round": "2024-1-practical",
+    "number": 1,
+    "subject": "practical-programming",
+    "concepts": [
+      "p-c-pointer"
+    ],
+    "type": "code",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2024-1-practical-q2",
+    "round": "2024-1-practical",
+    "number": 2,
+    "subject": "practical-database",
+    "concepts": [
+      "p-sql-select"
+    ],
+    "type": "sql",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2024-1-practical-q3",
+    "round": "2024-1-practical",
+    "number": 3,
+    "subject": "practical-theory",
+    "concepts": [
+      "p-design-pattern"
+    ],
+    "type": "term",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2024-1-practical-q4",
+    "round": "2024-1-practical",
+    "number": 4,
+    "subject": "practical-programming",
+    "concepts": [
+      "p-java-oop"
+    ],
+    "type": "code",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2024-1-practical-q5",
+    "round": "2024-1-practical",
+    "number": 5,
+    "subject": "practical-theory",
+    "concepts": [
+      "p-security-attack"
+    ],
+    "type": "term",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2024-1-practical-q6",
+    "round": "2024-1-practical",
+    "number": 6,
+    "subject": "practical-theory",
+    "concepts": [
+      "p-page-replacement"
+    ],
+    "type": "calculation",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  }
+]

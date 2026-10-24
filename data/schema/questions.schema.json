@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "questions.schema.json",
+  "title": "Questions",
+  "description": "한 회차의 문항 메타데이터 (data/questions/<round-id>.json). 문항 원문·보기·해설은 담지 않는다.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["id", "round", "number", "subject", "concepts", "type", "confidence", "sources"],
+    "properties": {
+      "id": {
+        "description": "문항 식별자. <round>-q<number> 와 정확히 일치해야 한다 (예: 2024-1-practical-q3).",
+        "type": "string",
+        "pattern": "^\\d{4}-[1-9]-(written|practical)-q[1-9][0-9]{0,2}$"
+      },
+      "round": { "description": "회차 id. 파일명과 같아야 한다.", "type": "string", "pattern": "^\\d{4}-[1-9]-(written|practical)$" },
+      "number": { "description": "회차 안의 문항 번호 (1 이상).", "type": "integer", "minimum": 1 },
+      "subject": { "description": "과목 slug.", "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+      "concepts": {
+        "description": "이 문항이 다루는 개념 slug 목록 (1개 이상, 중복 없음, 문항 과목 소속).",
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" }
+      },
+      "type": { "description": "문항 유형 slug (data/question-types.json).", "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+      "confidence": { "description": "official(공식 공개 문항) 또는 reconstructed(수험생 복원).", "enum": ["official", "reconstructed"] },
+      "sources": {
+        "description": "출처 목록 (1개 이상).",
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["label"],
+          "properties": {
+            "label": { "description": "출처 이름 (1~100자).", "type": "string", "minLength": 1, "maxLength": 100 },
+            "url": { "description": "출처 URL (선택).", "type": "string", "format": "uri" }
+          }
+        }
+      },
+      "note": { "description": "메모 (선택, 최대 200자). 문항 원문을 넣지 않는다.", "type": "string", "maxLength": 200 }
+    }
+  }
+}

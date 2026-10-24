@@ -1,0 +1,408 @@
+[
+  {
+    "id": "software-design",
+    "name": "소프트웨어 설계",
+    "tracks": [
+      "written"
+    ],
+    "topics": [
+      {
+        "id": "requirements",
+        "name": "요구사항 확인",
+        "concepts": [
+          {
+            "id": "requirements-engineering",
+            "name": "요구사항 공학"
+          },
+          {
+            "id": "software-process-model",
+            "name": "소프트웨어 개발 방법론"
+          }
+        ]
+      },
+      {
+        "id": "uml",
+        "name": "UML",
+        "concepts": [
+          {
+            "id": "uml-diagram",
+            "name": "UML 다이어그램"
+          },
+          {
+            "id": "uml-relationship",
+            "name": "UML 관계"
+          }
+        ]
+      },
+      {
+        "id": "design-principles",
+        "name": "설계 원리",
+        "concepts": [
+          {
+            "id": "design-pattern",
+            "name": "디자인 패턴"
+          },
+          {
+            "id": "coupling-cohesion",
+            "name": "결합도·응집도"
+          },
+          {
+            "id": "architecture-pattern",
+            "name": "아키텍처 패턴"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "software-development",
+    "name": "소프트웨어 개발",
+    "tracks": [
+      "written"
+    ],
+    "topics": [
+      {
+        "id": "data-structure",
+        "name": "자료구조",
+        "concepts": [
+          {
+            "id": "stack-queue",
+            "name": "스택·큐"
+          },
+          {
+            "id": "tree-traversal",
+            "name": "트리 순회"
+          },
+          {
+            "id": "sorting",
+            "name": "정렬 알고리즘"
+          }
+        ]
+      },
+      {
+        "id": "software-testing",
+        "name": "애플리케이션 테스트",
+        "concepts": [
+          {
+            "id": "test-technique",
+            "name": "테스트 기법"
+          },
+          {
+            "id": "test-level",
+            "name": "테스트 레벨"
+          }
+        ]
+      },
+      {
+        "id": "configuration-management",
+        "name": "형상 관리",
+        "concepts": [
+          {
+            "id": "version-control",
+            "name": "형상·버전 관리"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "database",
+    "name": "데이터베이스 구축",
+    "tracks": [
+      "written"
+    ],
+    "topics": [
+      {
+        "id": "db-modeling",
+        "name": "데이터 모델링",
+        "concepts": [
+          {
+            "id": "normalization",
+            "name": "정규화"
+          },
+          {
+            "id": "er-model",
+            "name": "E-R 모델"
+          }
+        ]
+      },
+      {
+        "id": "sql-written",
+        "name": "SQL",
+        "concepts": [
+          {
+            "id": "sql-statement",
+            "name": "SQL 문법"
+          },
+          {
+            "id": "relational-algebra",
+            "name": "관계대수·관계해석"
+          }
+        ]
+      },
+      {
+        "id": "transaction",
+        "name": "트랜잭션",
+        "concepts": [
+          {
+            "id": "transaction-property",
+            "name": "트랜잭션 특성(ACID)"
+          },
+          {
+            "id": "concurrency-control",
+            "name": "병행 제어"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "programming-language",
+    "name": "프로그래밍 언어 활용",
+    "tracks": [
+      "written"
+    ],
+    "topics": [
+      {
+        "id": "language-basics",
+        "name": "언어 기초",
+        "concepts": [
+          {
+            "id": "c-language",
+            "name": "C 언어"
+          },
+          {
+            "id": "java-language",
+            "name": "Java 언어"
+          },
+          {
+            "id": "python-language",
+            "name": "Python 언어"
+          }
+        ]
+      },
+      {
+        "id": "operating-system",
+        "name": "운영체제",
+        "concepts": [
+          {
+            "id": "page-replacement",
+            "name": "페이지 교체"
+          },
+          {
+            "id": "cpu-scheduling",
+            "name": "CPU 스케줄링"
+          }
+        ]
+      },
+      {
+        "id": "network-basics",
+        "name": "네트워크 기초",
+        "concepts": [
+          {
+            "id": "ip-addressing",
+            "name": "IP 주소·서브네팅"
+          },
+          {
+            "id": "osi-model",
+            "name": "OSI 7계층"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "information-system",
+    "name": "정보시스템 구축 관리",
+    "tracks": [
+      "written"
+    ],
+    "topics": [
+      {
+        "id": "security",
+        "name": "정보보안",
+        "concepts": [
+          {
+            "id": "security-attack",
+            "name": "보안 공격 기법"
+          },
+          {
+            "id": "cryptography",
+            "name": "암호 알고리즘"
+          }
+        ]
+      },
+      {
+        "id": "it-project",
+        "name": "IT 프로젝트 관리",
+        "concepts": [
+          {
+            "id": "cost-estimation",
+            "name": "비용 산정 모델"
+          },
+          {
+            "id": "new-technology",
+            "name": "신기술 용어"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "practical-programming",
+    "name": "프로그래밍(코드 해석)",
+    "tracks": [
+      "practical"
+    ],
+    "topics": [
+      {
+        "id": "p-c",
+        "name": "C 언어",
+        "concepts": [
+          {
+            "id": "p-c-pointer",
+            "name": "C 포인터"
+          },
+          {
+            "id": "p-c-array-string",
+            "name": "C 배열·문자열"
+          }
+        ]
+      },
+      {
+        "id": "p-java",
+        "name": "Java",
+        "concepts": [
+          {
+            "id": "p-java-oop",
+            "name": "Java 상속·오버라이딩"
+          },
+          {
+            "id": "p-java-static",
+            "name": "Java static·예외"
+          }
+        ]
+      },
+      {
+        "id": "p-python",
+        "name": "Python",
+        "concepts": [
+          {
+            "id": "p-python-collection",
+            "name": "Python 리스트·딕셔너리"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "practical-database",
+    "name": "데이터베이스·SQL",
+    "tracks": [
+      "practical"
+    ],
+    "topics": [
+      {
+        "id": "p-sql",
+        "name": "SQL",
+        "concepts": [
+          {
+            "id": "p-sql-select",
+            "name": "SELECT·GROUP BY"
+          },
+          {
+            "id": "p-sql-ddl-dml",
+            "name": "DDL·DML"
+          },
+          {
+            "id": "p-sql-join",
+            "name": "JOIN·서브쿼리"
+          }
+        ]
+      },
+      {
+        "id": "p-db-theory",
+        "name": "DB 이론",
+        "concepts": [
+          {
+            "id": "p-normalization",
+            "name": "정규화·이상 현상"
+          },
+          {
+            "id": "p-relational-algebra",
+            "name": "관계대수"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "practical-theory",
+    "name": "이론(SW공학·네트워크·보안 등)",
+    "tracks": [
+      "practical"
+    ],
+    "topics": [
+      {
+        "id": "p-se",
+        "name": "소프트웨어 공학",
+        "concepts": [
+          {
+            "id": "p-design-pattern",
+            "name": "디자인 패턴"
+          },
+          {
+            "id": "p-uml",
+            "name": "UML"
+          },
+          {
+            "id": "p-testing",
+            "name": "테스트 기법·커버리지"
+          }
+        ]
+      },
+      {
+        "id": "p-network",
+        "name": "네트워크",
+        "concepts": [
+          {
+            "id": "p-network-protocol",
+            "name": "네트워크 프로토콜"
+          },
+          {
+            "id": "p-ip-subnet",
+            "name": "IP·서브네팅"
+          }
+        ]
+      },
+      {
+        "id": "p-security",
+        "name": "보안",
+        "concepts": [
+          {
+            "id": "p-security-attack",
+            "name": "보안 공격 기법"
+          },
+          {
+            "id": "p-access-control",
+            "name": "접근 통제·인증"
+          }
+        ]
+      },
+      {
+        "id": "p-os",
+        "name": "운영체제",
+        "concepts": [
+          {
+            "id": "p-page-replacement",
+            "name": "페이지 교체"
+          },
+          {
+            "id": "p-scheduling",
+            "name": "프로세스 스케줄링"
+          }
+        ]
+      }
+    ]
+  }
+]

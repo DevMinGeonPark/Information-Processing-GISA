@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "question-types.schema.json",
+  "title": "Question types",
+  "description": "문항 유형 분류 (data/question-types.json). 문항당 정확히 1개를 부여한다.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["id", "name", "criteria"],
+    "properties": {
+      "id": { "description": "유형 slug.", "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+      "name": { "description": "한국어 표시명.", "type": "string", "minLength": 1, "maxLength": 50 },
+      "criteria": { "description": "판별 기준.", "type": "string", "minLength": 1, "maxLength": 200 }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+[
+  { "id": "2022-1-written", "year": 2022, "session": 1, "track": "written" },
+  { "id": "2024-1-practical", "year": 2024, "session": 1, "track": "practical" },
+  { "id": "2024-2-practical", "year": 2024, "session": 2, "track": "practical" }
+]

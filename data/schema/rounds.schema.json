@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rounds.schema.json",
+  "title": "Rounds",
+  "description": "시행된 시험 회차 목록 (data/rounds.json).",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["id", "year", "session", "track"],
+    "properties": {
+      "id": {
+        "description": "회차 식별자. <year>-<session>-<track> 과 정확히 일치해야 한다 (예: 2023-2-practical).",
+        "type": "string",
+        "pattern": "^\\d{4}-[1-9]-(written|practical)$"
+      },
+      "year": { "description": "시행 연도.", "type": "integer" },
+      "session": { "description": "해당 연도의 회 (1~9).", "type": "integer", "minimum": 1, "maximum": 9 },
+      "track": { "description": "시험 구분: written(필기) 또는 practical(실기).", "enum": ["written", "practical"] }
+    }
+  }
+}

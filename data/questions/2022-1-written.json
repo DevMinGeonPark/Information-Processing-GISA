@@ -1,0 +1,104 @@
+[
+  {
+    "id": "2022-1-written-q1",
+    "round": "2022-1-written",
+    "number": 1,
+    "subject": "software-design",
+    "concepts": [
+      "uml-diagram"
+    ],
+    "type": "term",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2022-1-written-q2",
+    "round": "2022-1-written",
+    "number": 2,
+    "subject": "software-design",
+    "concepts": [
+      "coupling-cohesion"
+    ],
+    "type": "concept",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2022-1-written-q3",
+    "round": "2022-1-written",
+    "number": 3,
+    "subject": "software-development",
+    "concepts": [
+      "tree-traversal"
+    ],
+    "type": "calculation",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2022-1-written-q4",
+    "round": "2022-1-written",
+    "number": 4,
+    "subject": "database",
+    "concepts": [
+      "normalization"
+    ],
+    "type": "concept",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2022-1-written-q5",
+    "round": "2022-1-written",
+    "number": 5,
+    "subject": "programming-language",
+    "concepts": [
+      "page-replacement"
+    ],
+    "type": "calculation",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  },
+  {
+    "id": "2022-1-written-q6",
+    "round": "2022-1-written",
+    "number": 6,
+    "subject": "information-system",
+    "concepts": [
+      "security-attack"
+    ],
+    "type": "term",
+    "confidence": "reconstructed",
+    "sources": [
+      {
+        "label": "수험생 복원 기출 (시드 데이터, 검토 필요)"
+      }
+    ],
+    "note": "시드 데이터: 문항 번호와 개념 매핑은 검토 전입니다."
+  }
+]
