@@ -2,7 +2,7 @@
 id: SPEC-TREND-001
 title: "정보처리기사 기출 유형·개념 출제 경향 분석 정적 사이트 v1"
 version: "0.5.0"
-status: draft
+status: in-progress
 created: 2026-10-25
 updated: 2026-10-25
 author: min
