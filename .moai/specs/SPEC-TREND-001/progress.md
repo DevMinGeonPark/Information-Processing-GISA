@@ -97,7 +97,7 @@ m1_to_mN_commit_strategy: one commit per milestone (M1-M5) + evidence commit
 
 ```yaml
 sync_complete_at: 2026-10-25
-sync_commit_sha: pending-backfill-sync
+sync_commit_sha: 0799227
 sync_status: complete-with-gaps
 b12_self_test_a: "grep -c SPEC-TREND-001 CHANGELOG.md before emission → 0 (CHANGELOG.md absent)"
 b12_self_test_b: "distinct AC ids in acceptance.md → 16; CHANGELOG v0.1.0 entry states 16"
