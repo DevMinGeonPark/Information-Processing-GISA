@@ -1,0 +1,33 @@
+:root { font-family: system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; color: #1f2328; background: #fff; }
+body { margin: 0 auto; max-width: 1100px; padding: 1rem; }
+header nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+nav a[aria-current="page"] { font-weight: 700; text-decoration: underline; }
+a:focus-visible, button:focus-visible, select:focus-visible, td:focus-visible { outline: 3px solid #0969da; outline-offset: 1px; }
+.filters { display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; align-items: end; margin: 1rem 0; }
+.filters label { display: flex; flex-direction: column; font-size: 0.85rem; gap: 0.2rem; }
+.hint { color: #59636e; align-self: center; }
+.disclaimer { background: #fff8c5; border: 1px solid #d4a72c; padding: 0.5rem 0.75rem; border-radius: 6px; }
+table { border-collapse: collapse; }
+.ranking th, .ranking td { border-bottom: 1px solid #d1d9e0; padding: 0.35rem 0.6rem; text-align: left; }
+.ranking th button { font: inherit; font-weight: 700; background: none; border: 0; cursor: pointer; padding: 0; }
+.heatmap-scroll { overflow-x: auto; }
+.heatmap th { font-size: 0.75rem; font-weight: 500; padding: 0 0.4rem; white-space: nowrap; text-align: left; }
+.heatmap thead th.round-head { writing-mode: vertical-rl; transform: rotate(180deg); }
+.round-head.practical { color: #8250df; }
+.cell { width: 16px; height: 16px; border-radius: 3px; display: inline-block; }
+td.cell { display: table-cell; border: 2px solid #fff; }
+.level-0 { background: #ebedf0; }
+.level-1 { background: #9be9a8; }
+.level-2 { background: #40c463; }
+.level-3 { background: #30a14e; }
+.level-4 { background: #216e39; }
+.legend { font-size: 0.8rem; display: flex; align-items: center; gap: 3px; }
+.tooltip { position: sticky; bottom: 1rem; display: inline-block; background: #1f2328; color: #fff; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.85rem; }
+.trend-group ul { list-style: none; padding: 0; }
+.trend-group li { display: grid; grid-template-columns: 9rem 12rem 1fr; gap: 0.75rem; align-items: center; padding: 0.2rem 0; }
+.trend-group.practical { border-left: 4px solid #8250df; padding-left: 0.75rem; }
+.trend-group.written { border-left: 4px solid #0969da; padding-left: 0.75rem; }
+.bar { display: flex; height: 12px; background: #ebedf0; border-radius: 3px; overflow: hidden; }
+.seg { height: 100%; }
+.type-term { background: #0969da; } .type-concept { background: #1a7f37; } .type-calculation { background: #bf8700; }
+.type-code { background: #8250df; } .type-sql { background: #cf222e; } .type-descriptive { background: #57606a; }
