@@ -76,7 +76,7 @@ m1_to_mN_commit_strategy: per-milestone commits on main (a2e2596, 62fb463, 60268
 
 ```yaml
 sync_complete_at: 2026-10-26
-sync_commit_sha: pending-backfill-sync
+sync_commit_sha: 0f85b8a
 sync_status: complete-with-gaps
 b12_self_test_a: "grep -c SPEC-TREND-002 CHANGELOG.md before emission → 0"
 b12_self_test_b: "distinct AC ids in acceptance.md → 8 (AC-TREND2-001..008); CHANGELOG v0.2.0 entry states 8"
