@@ -2,7 +2,7 @@
 id: SPEC-TREND-002
 title: "정보처리기사 기출 데이터 커뮤니티 기여 흐름 (GitHub PR 기반)"
 version: "0.2.0"
-status: draft
+status: in-progress
 created: 2026-10-25
 updated: 2026-10-25
 author: min
