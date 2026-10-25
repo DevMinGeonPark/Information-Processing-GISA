@@ -2,9 +2,9 @@
 id: SPEC-TREND-002
 title: "정보처리기사 기출 데이터 커뮤니티 기여 흐름 (GitHub PR 기반)"
 version: "0.2.0"
-status: in-progress
+status: completed
 created: 2026-10-25
-updated: 2026-10-25
+updated: 2026-10-26
 author: min
 priority: P2
 phase: "v0.1.0 target"

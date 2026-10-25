@@ -74,4 +74,25 @@ m1_to_mN_commit_strategy: per-milestone commits on main (a2e2596, 62fb463, 60268
 
 ## §E.4 Sync-phase Audit-Ready Signal
 
-_<pending sync-phase>_
+```yaml
+sync_complete_at: 2026-10-26
+sync_commit_sha: pending-backfill-sync
+sync_status: complete-with-gaps
+b12_self_test_a: "grep -c SPEC-TREND-002 CHANGELOG.md before emission → 0"
+b12_self_test_b: "distinct AC ids in acceptance.md → 8 (AC-TREND2-001..008); CHANGELOG v0.2.0 entry states 8"
+b12_self_test_c: "ls of every path named in the CHANGELOG entry → all exist"
+changelog_entry_position: "## [0.2.0] - 2026-10-26 (below empty [Unreleased], above [0.1.0])"
+frontmatter_status_transitions:
+  spec_md: "in-progress → implemented → completed (single sync commit); updated 2026-10-26"
+  plan_md: "no frontmatter block — not modified"
+  acceptance_md: "no frontmatter block — not modified"
+  progress_md: "no frontmatter block — not modified"
+docs: [README.md (기여 / 라이선스 sections), CHANGELOG.md ([0.2.0])]
+pre_sync_checks:
+  npm_test: "Tests  104 passed (104)"
+  validate: "0 error(s), 0 warning(s)"
+url_scheme_note: "schema pattern is ^https?:// (http and https accepted, other schemes rejected) — CHANGELOG states this, not https-only"
+m4_branch_protection: "gh api repos/DevMinGeonPark/Information-Processing-GISA/branches/main/protection --jq '.required_status_checks.contexts' → [\"validate\",\"test\"] (2026-10-26)"
+open_gaps:
+  - seed data still reconstructed placeholders awaiting content review
+```
