@@ -7,6 +7,8 @@ import { Ranking } from "./views/Ranking";
 import { Heatmap } from "./views/Heatmap";
 import { RoundTrend } from "./views/RoundTrend";
 import { Sources } from "./views/Sources";
+import { Contribute } from "./views/Contribute";
+import { CONTRIBUTING_URL } from "./core/snippet";
 
 // GitHub Pages 에는 서버 리라이트가 없으므로 해시 라우팅만 쓴다.
 const ROUTES = [
@@ -14,6 +16,7 @@ const ROUTES = [
   ["heatmap", "히트맵"],
   ["trend", "회차별 경향"],
   ["sources", "출처"],
+  ["contribute", "기여 도우미"],
 ] as const;
 type Route = (typeof ROUTES)[number][0];
 
@@ -40,12 +43,16 @@ export function App({ data = dataset }: { data?: Dataset }) {
               {label}
             </a>
           ))}
-          {/* SPEC-TREND-002: 데이터 기여 링크 자리 */}
+          <a href={CONTRIBUTING_URL} className="contribute-link">
+            데이터 기여하기
+          </a>
         </nav>
       </header>
       <main>
         {route === "sources" ? (
           <Sources data={data} />
+        ) : route === "contribute" ? (
+          <Contribute data={data} />
         ) : (
           <>
             <FilterBar data={data} filter={filter} onChange={setFilter} />

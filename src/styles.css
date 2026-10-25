@@ -31,3 +31,8 @@ td.cell { display: table-cell; border: 2px solid #fff; }
 .seg { height: 100%; }
 .type-term { background: #0969da; } .type-concept { background: #1a7f37; } .type-calculation { background: #bf8700; }
 .type-code { background: #8250df; } .type-sql { background: #cf222e; } .type-descriptive { background: #57606a; }
+.contribute-link { margin-left: auto; font-weight: 600; }
+.contribute fieldset { border: 1px solid #d1d9e0; border-radius: 6px; display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; }
+.contribute .check { flex-direction: row; align-items: center; gap: 0.3rem; }
+.snippet { background: #f6f8fa; border: 1px solid #d1d9e0; border-radius: 6px; padding: 0.75rem; overflow-x: auto; }
+.snippet-errors { color: #cf222e; }
