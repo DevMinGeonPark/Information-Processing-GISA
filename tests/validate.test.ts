@@ -93,6 +93,8 @@ const cases: Case[] = [
     mutate: () => ({ "questions/2024-1-written.json": '[{"id": "2024-1-written-q1" "round": "2024-1-written"}]' }) },
   { name: "V2 taxonomy missing required field", code: "V2", file: "data/taxonomy.json", id: "subj-p",
     mutate: (ds) => { delete ds.taxonomy[1].name; } },
+  { name: "V2 non-http source url (javascript:)", code: "V2", file: "data/questions/2024-1-written.json", id: "2024-1-written-q1",
+    mutate: (ds) => { wq(ds).sources = [{ label: "x", url: "javascript:alert(1)" }]; } },
   { name: "V3 unknown round", code: "V3", file: "data/questions/2024-1-written.json", id: "2024-1-written-q2",
     mutate: (ds) => { ds.questions["2024-1-written.json"].push({ ...wq(ds), id: "2024-1-written-q2", number: 2 }); ds.rounds.splice(0, 1); ds.questions["2024-1-written.json"].shift(); } },
   { name: "V3 unknown subject", code: "V3", file: "data/questions/2024-1-written.json", id: "2024-1-written-q1",
@@ -175,6 +177,20 @@ describe("validator — rule fixtures (AC-TREND-002)", () => {
     expect(validateDataRoot(write(ds)).errors.map((e) => e.code)).toEqual(["V3"]);
   });
 
+  it("a schema-invalid question file still gets reference checks (V2 and V3 together)", () => {
+    const ds = base();
+    Object.assign(wq(ds), { sources: [], concepts: ["nope"] });
+    const res = validateDataRoot(write(ds));
+    const f = "data/questions/2024-1-written.json";
+    expect(res.errors.some((e) => e.code === "V2" && e.file === f && e.id === "2024-1-written-q1")).toBe(true);
+    expect(res.errors.some((e) => e.code === "V3" && e.file === f && e.cause.includes("nope"))).toBe(true);
+  });
+
+  it("malformed question items do not crash the reference checks", () => {
+    const res = validateDataRoot(write(base(), { "questions/2024-1-written.json": '[1, {"id": 5, "concepts": "x"}]' }));
+    expect(new Set(res.errors.map((e) => e.code))).toEqual(new Set(["V2"]));
+  });
+
   it("V4 duplicate round id", () => {
     const ds = base();
     ds.rounds.push({ ...ds.rounds[0] });
@@ -201,6 +217,11 @@ describe("schema rejects question text fields (AC-TREND-003)", () => {
     const res = validateDataRoot(write(ds));
     expect(res.errors.length).toBeGreaterThan(0);
     expect(new Set(res.errors.map((e) => e.code))).toEqual(new Set(["V2"]));
+  });
+  it("http and https source urls are accepted", () => {
+    const ds = base();
+    wq(ds).sources = [{ label: "a", url: "https://example.com/x" }, { label: "b", url: "http://example.com" }];
+    expect(validateDataRoot(write(ds)).errors).toEqual([]);
   });
   it("200-char note is accepted", () => {
     const ds = base();

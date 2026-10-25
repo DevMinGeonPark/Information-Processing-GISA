@@ -14,35 +14,54 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  # 기여 관문 (SPEC-TREND-002): PR 에서는 base 브랜치의 검증기·스키마로 PR 의 data/ 를 검증한다.
+  # PR 이 scripts/ 나 data/schema/ 를 바꿔도 판정은 base 쪽 코드가 하며, 그런 PR 은 소유자 리뷰 대상이다.
   validate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout base branch (validator + schema + baseline taxonomy)
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          ref: ${{ github.base_ref }}
+          path: base
+          persist-credentials: false
+      - name: Checkout PR tree
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v4
+        with:
+          path: pr
+          persist-credentials: false
+      - name: Checkout
+        if: github.event_name != 'pull_request'
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
-      - name: Validate data (PR — base-branch taxonomy as V9 baseline)
+          cache-dependency-path: ${{ github.event_name == 'pull_request' && 'base/package-lock.json' || 'package-lock.json' }}
+      - name: Install base validator dependencies
         if: github.event_name == 'pull_request'
-        env:
-          BASE_REF: ${{ github.base_ref }}
-        run: |
-          baseline="$RUNNER_TEMP/base-taxonomy.json"
-          if git show "origin/$BASE_REF:data/taxonomy.json" > "$baseline" 2>/dev/null; then
-            npm run validate -- . --baseline "$baseline"
-          else
-            echo "base branch has no data/taxonomy.json; V9 baseline unavailable"
-            npm run validate -- .
-          fi
+        working-directory: base
+        run: npm ci
+      - name: Contribution gate (base validator, base taxonomy as V9 baseline)
+        if: github.event_name == 'pull_request'
+        run: node base/scripts/validate.ts pr --baseline base/data/taxonomy.json
+      - name: Install dependencies
+        if: github.event_name != 'pull_request'
+        run: npm ci
       - name: Validate data (push)
         if: github.event_name != 'pull_request'
-        run: npm run validate -- .
+        run: node scripts/validate.ts .
 
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -1,7 +1,9 @@
 // SPEC-TREND-002 기여 문서·템플릿·관문 계약 검사.
 import { describe, it, expect } from "vitest";
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, mkdtempSync, cpSync } from "node:fs";
 import { join, dirname } from "node:path";
+import { tmpdir } from "node:os";
+import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -66,4 +68,88 @@ describe("AC-TREND2-003 issue and PR templates", () => {
       expect(text).toMatch(/동의/);
     });
   }
+});
+
+// CI 기여 관문이 실행하는 명령. base/ 는 base 브랜치 체크아웃, pr/ 는 PR 작업 트리다.
+const GATE = "node base/scripts/validate.ts pr --baseline base/data/taxonomy.json";
+
+describe("AC-TREND2-004 contribution gate rejects a bad fixture", () => {
+  it("the gate command exits non-zero with V2 and V3 lines for 2099-1-practical-q1", () => {
+    // 이 체크아웃을 base 로, 저장소 data/ + 잘못된 기여 파일을 PR 작업 트리로 놓고 같은 명령을 돌린다.
+    const pr = mkdtempSync(join(tmpdir(), "gisa-gate-"));
+    cpSync(join(ROOT, "data"), join(pr, "data"), { recursive: true });
+    cpSync(join(ROOT, "tests/fixtures/contribution/questions"), join(pr, "data/questions"), { recursive: true });
+    const [, script, , flag, baseline] = GATE.split(" ");
+    const r = spawnSync(process.execPath, [join(ROOT, script.replace(/^base\//, "")), pr, flag, join(ROOT, baseline.replace(/^base\//, ""))], { encoding: "utf8" });
+    const lines = (r.stdout + r.stderr).split("\n");
+    expect(r.status).not.toBe(0);
+    expect(lines.some((l) => l.includes("2099-1-practical-q1") && l.includes("V2"))).toBe(true);
+    expect(lines.some((l) => l.includes("2099-1-practical-q1") && l.includes("V3") && l.includes("no-such-concept"))).toBe(true);
+  });
+});
+
+// 들여쓰기 2칸 YAML 을 job 단위로 자른다 (파서 의존성 없이 워크플로 계약만 본다).
+function jobBlocks(yml: string): Record<string, string> {
+  const out: Record<string, string> = {};
+  let name: string | undefined;
+  for (const line of yml.slice(yml.indexOf("\njobs:\n") + 7).split("\n")) {
+    const m = /^ {2}([\w-]+):\s*$/.exec(line);
+    if (m) out[(name = m[1])] = "";
+    else if (name) out[name] += line + "\n";
+  }
+  return out;
+}
+function permissions(text: string, indent: number): string[] {
+  const lines = text.split("\n");
+  const i = lines.findIndex((l) => l === `${" ".repeat(indent)}permissions:`);
+  if (i < 0) return [];
+  const out: string[] = [];
+  for (const l of lines.slice(i + 1)) {
+    if (!l.startsWith(" ".repeat(indent + 2)) || l.trim() === "") break;
+    out.push(l.trim());
+  }
+  return out;
+}
+
+describe("AC-TREND2-005 workflow definitions", () => {
+  const dir = join(ROOT, ".github/workflows");
+  const all = readdirSync(dir).map((f) => readFileSync(join(dir, f), "utf8"));
+  const ci = read(".github/workflows/ci.yml");
+  const head = ci.slice(0, ci.indexOf("\njobs:\n"));
+  const jobs = jobBlocks(ci);
+  const onPush = (block: string) => /^ {4}if: .*github\.event_name == 'push'/m.test(block);
+
+  it("no workflow uses pull_request_target", () => {
+    for (const w of all) expect(w).not.toContain("pull_request_target");
+  });
+
+  it("ci.yml triggers on pull_request without path filters and grants only contents: read at the top", () => {
+    expect(head).toMatch(/^ {2}pull_request:/m);
+    expect(head).not.toMatch(/paths(-ignore)?:/);
+    expect(permissions(head, 0)).toEqual(["contents: read"]);
+  });
+
+  it("every job that runs on pull_request holds contents: read only", () => {
+    const prJobs = Object.entries(jobs).filter(([, b]) => !onPush(b));
+    expect(prJobs.map(([n]) => n)).toEqual(expect.arrayContaining(["validate", "test"]));
+    for (const [n, b] of prJobs) expect(permissions(b, 4), n).toEqual(["contents: read"]);
+  });
+
+  it("only push-on-main jobs may hold Pages permissions", () => {
+    for (const [n, b] of Object.entries(jobs)) {
+      const p = permissions(b, 4);
+      if (p.some((x) => !x.startsWith("contents:"))) {
+        expect(b, n).toMatch(/^ {4}if: .*github\.event_name == 'push'.*refs\/heads\/main/m);
+      }
+    }
+  });
+
+  it("the PR data check runs the base-branch validator and schema against the PR tree with the base taxonomy", () => {
+    const v = jobs.validate;
+    expect(v).toContain("ref: ${{ github.base_ref }}");
+    expect(v).toMatch(/path: base\n/);
+    expect(v).toMatch(/path: pr\n/);
+    expect(v).toMatch(/working-directory: base\n\s+run: npm ci/);
+    expect(v).toContain(GATE);
+  });
 });

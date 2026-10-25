@@ -36,7 +36,7 @@
           "required": ["label"],
           "properties": {
             "label": { "description": "출처 이름 (1~100자).", "type": "string", "minLength": 1, "maxLength": 100 },
-            "url": { "description": "출처 URL (선택).", "type": "string", "format": "uri" }
+            "url": { "description": "출처 URL (선택, http:// 또는 https:// 로 시작).", "type": "string", "format": "uri", "pattern": "^https?://" }
           }
         }
       },

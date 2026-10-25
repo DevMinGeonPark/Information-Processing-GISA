@@ -77,7 +77,8 @@ export function validateDataRoot(root: string, opts: { baselinePath?: string } =
   const err = (file: string, code: string, cause: string, id?: string) => errors.push({ file, id, code, cause });
 
   // V1(파싱) + V2(스키마). 통과하지 못한 파일은 교차 검증에서 제외한다.
-  const load = (path: string, schema: string): any[] | undefined => {
+  // 단 문항 파일(keepInvalid)은 배열이면 계속 교차 검증해 V2 와 V3 등을 함께 알린다.
+  const load = (path: string, schema: string, keepInvalid = false): any[] | undefined => {
     const file = display(path);
     let data: unknown;
     try {
@@ -92,7 +93,7 @@ export function validateDataRoot(root: string, opts: { baselinePath?: string } =
         const extra = e.keyword === "additionalProperties" ? ` '${(e.params as any).additionalProperty}'` : "";
         err(file, "V2", `${e.instancePath || "/"} ${e.message}${extra}`, recordIdAt(data, e.instancePath));
       }
-      return undefined;
+      return keepInvalid && Array.isArray(data) ? data : undefined;
     }
     return data as any[];
   };
@@ -160,26 +161,30 @@ export function validateDataRoot(root: string, opts: { baselinePath?: string } =
   const seenQ = new Set<string>();
   for (const name of qFiles) {
     const path = join(qDir, name);
-    const qs = load(path, "questions");
+    const qs = load(path, "questions", true);
     if (!qs) continue;
     const f = display(path);
     const stem = basename(name, ".json");
     if (!ROUND_FILE_RE.test(stem)) err(f, "V7", `file name must be '<round-id>.json'`);
+    const str = (v: unknown): v is string => typeof v === "string";
     for (const q of qs) {
+      // 스키마를 어긴 항목은 필드 모양이 맞을 때만 교차 검증한다 (모양 오류는 V2 가 이미 보고함).
+      if (q === null || typeof q !== "object" || !str(q.id)) continue;
       if (seenQ.has(q.id)) err(f, "V4", `duplicate question id '${q.id}'`, q.id);
       seenQ.add(q.id);
-      if (q.round !== stem) err(f, "V7", `round '${q.round}' does not match file name '${name}'`, q.id);
-      if (q.id !== `${q.round}-q${q.number}`) err(f, "V7", `question id must be '${q.round}-q${q.number}'`, q.id);
+      if (str(q.round) && q.round !== stem) err(f, "V7", `round '${q.round}' does not match file name '${name}'`, q.id);
+      if (str(q.round) && Number.isInteger(q.number) && q.id !== `${q.round}-q${q.number}`)
+        err(f, "V7", `question id must be '${q.round}-q${q.number}'`, q.id);
 
-      const round = roundById.get(q.round);
-      const subject = subjectById.get(q.subject);
-      if (rounds && !round) err(f, "V3", `unknown round '${q.round}'`, q.id);
-      if (taxonomy && !subject) err(f, "V3", `unknown subject '${q.subject}'`, q.id);
-      if (types && !typeIds.has(q.type)) err(f, "V3", `unknown question type '${q.type}'`, q.id);
+      const round = str(q.round) ? roundById.get(q.round) : undefined;
+      const subject = str(q.subject) ? subjectById.get(q.subject) : undefined;
+      if (rounds && str(q.round) && !round) err(f, "V3", `unknown round '${q.round}'`, q.id);
+      if (taxonomy && str(q.subject) && !subject) err(f, "V3", `unknown subject '${q.subject}'`, q.id);
+      if (types && str(q.type) && !typeIds.has(q.type)) err(f, "V3", `unknown question type '${q.type}'`, q.id);
       if (round && subject && !subject.tracks.includes(round.track))
         err(f, "V6", `subject '${q.subject}' is not offered on track '${round.track}'`, q.id);
-      if (!taxonomy) continue;
-      for (const cid of q.concepts) {
+      if (!taxonomy || !Array.isArray(q.concepts)) continue;
+      for (const cid of q.concepts.filter(str)) {
         const c = conceptById.get(cid);
         if (!c) err(f, "V3", `unknown concept '${cid}'`, q.id);
         else if (subject && c.subject !== q.subject) err(f, "V5", `concept '${cid}' belongs to subject '${c.subject}', not '${q.subject}'`, q.id);
