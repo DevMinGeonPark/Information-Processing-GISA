@@ -37,6 +37,7 @@ describe("AC-TREND2-001 CONTRIBUTING.md", () => {
     expect(before).toContain("`data/`");
     expect(before).toContain("`scripts/`");
     expect(before).toContain("`data/schema/`");
+    expect(before).toContain("`.github/`");
     expect(before).toContain("소유자 리뷰");
   });
 });
